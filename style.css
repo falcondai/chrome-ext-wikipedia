@@ -1,0 +1,12 @@
+a.ext-inpage-link {
+  color: black;
+}
+
+a.ext-inpage-link:visited {
+  color: black;
+}
+
+a.ext-inpage-link:hover {
+  color: #444;
+  text-decoration: none;
+}

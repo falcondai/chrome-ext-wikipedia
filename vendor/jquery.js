@@ -1,0 +1,1 @@
+/home/dai/dev/chrome-ext/wikipedia/vendor/jquery-1.10.2.min.js

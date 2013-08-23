@@ -1,0 +1,16 @@
+{
+  "name": "Wikipedia Helper",
+  "version": "0.0.0",
+  "manifest_version": 2,
+
+  "author": "Falcon Dai",
+  "description": "Utilities designed to improve the user experience of Wikipedia for avid Wikipedia users",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.wikipedia.org/*"],
+      "js": ["vendor/jquery.js", "content.js"],
+      "css": ["style.css"]
+    }
+  ]
+}
