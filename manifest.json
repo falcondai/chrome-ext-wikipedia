@@ -6,6 +6,7 @@
   "author": "Falcon Dai",
   "description": "Utilities designed to improve the user experience of Wikipedia for avid Wikipedia users",
 
+  "options_page": "options.html",
   "content_scripts": [
     {
       "matches": ["*://*.wikipedia.org/*"],

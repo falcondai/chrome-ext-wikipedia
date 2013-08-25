@@ -10,3 +10,14 @@ a.ext-inpage-link:hover {
   color: #444;
   text-decoration: none;
 }
+
+img.ext-popover-image {
+  background-color: white;
+  display: block;
+  position: absolute;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin: 5px;
+  z-index: 10;
+  pointer-events: none;
+}
