@@ -1,10 +1,13 @@
 {
-  "name": "Wikipedia Helper",
+  "name": "Wikipedia Plus",
   "version": "0.0.0",
   "manifest_version": 2,
 
   "author": "Falcon Dai",
-  "description": "Utilities designed to improve the user experience of Wikipedia for avid Wikipedia users",
+  "description": "Utilities to improve the user experience of Wikipedia.org for avid users",
+  "icons": { 
+    "128": "/assets/image/icon.png"
+  },
 
   "options_page": "options.html",
   "content_scripts": [

@@ -1,4 +1,5 @@
-// TODO summary for internal wikipedia links
+// TODO + summary for internal wikipedia links
+// TODO + network graph with reading progress indicator (body of knowledge)
 
 // large popover images when hover
 var popover,
@@ -32,9 +33,9 @@ $('#content a img').not('.fullImageLink img').mouseenter(function (event) {
 })
 .mousemove(function (event) {
   if (direction == 'rtl') {
-    popover.css('right', Math.max(0, html.width() - (event.pageX + popover.outerWidth(true))));
+    popover.css('left', Math.min(event.pageX, html.width() - popover.outerWidth(true)));
   } else {
-    popover.css('left', Math.max(0, event.pageX - popover.outerWidth(true)));
+    popover.css('right', Math.min(html.width() - event.pageX, html.width() - popover.outerWidth(true)));
   }
   popover.css('top', Math.min(event.pageY, body.scrollTop() + html.height() - popover.outerHeight(true)));
 })
