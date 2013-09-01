@@ -1,13 +1,17 @@
 {
   "name": "Wikipedia Plus",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "manifest_version": 2,
 
   "author": "Falcon Dai",
-  "description": "Utilities to improve the user experience of Wikipedia.org for avid users",
+  "description": "Utilities to improve the user experience of Wikipedia.org for avid users.",
   "icons": { 
     "128": "/assets/image/icon.png"
   },
+
+  "permissions": [
+    "storage"
+  ],
 
   "options_page": "options.html",
   "content_scripts": [

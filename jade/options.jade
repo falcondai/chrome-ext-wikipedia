@@ -1,8 +1,8 @@
 doctype 5
 html
   head
-    title Wikipedia Plus Options
-    link(rel='icon', href='/assets/image/favicon.1.png')
+    title Options : Wikipedia Plus
+    link(rel='icon', href='/assets/image/favicon.png')
     :stylus
       body
         font-family Helvetica, sans-serif
@@ -30,13 +30,19 @@ html
           text-decoration none
           &:hover
             color black
-
       .trademark-legend
         margin-top 10px
         font-size 0.9em
   body
-    h1 Wikipedia Plus Options
-    
+    h1 Options : Wikipedia Plus
+    ul
+      li turn section titles into links
+      li enlarge images
+      li show snippet for Wikipedia links
+
     .foot &copy; 2013 
       a(href='http://twitter.com/falcondai', target='_blank') Falcon Dai
       .trademark-legend Disclaimer: Wikipedia and its associated marks are official trademarks of the Wikimedia Foundation in the United States and other countries. These marks are being used under license by the Wikimedia Foundation. Wikipedia Plus Chrome Extension is not endorsed by or affiliated with the Wikimedia Foundation.
+
+    script(href='/vendor/jquery.js')
+    script(href='/options.js')
