@@ -5,6 +5,13 @@ A Chrome extension with goodies built to improve user experience of Wikipedia.or
 
 screenshot
 ----------
+![snippet-screenshot](https://raw.github.com/falcondai/chrome-ext-wikipedia/master/graphics/snippet-screenshot-640.png)
+
+features
+--------
+* show short text snippets for Wikipedia's internal entries when hover
+* turn section titles into in-page links for easier bookmarking and sharing particular sections
+* enlarge images by 2X when hover
 
 license
 -------

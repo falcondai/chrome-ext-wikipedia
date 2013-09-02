@@ -1,12 +1,12 @@
 It supplements Wikipedia.org's existing web interface with some convenient behaviors I always wanted myself. 
 
 Implemented features:
-* turns section titles into in-page links for easier bookmarking and sharing particular sections
+* show short text snippets for Wikipedia's internal entries when hover
+* turn section titles into in-page links for easier bookmarking and sharing particular sections
 * enlarge images by 2X when hover
-* adjusted enlarged image placement for right-to-left language pages
+  * adjusted enlarged image placement for right-to-left language pages
 
 Future features:
-* short excerpt when hover for intra-Wikipedia entry links
 * adjustable image zoom level
 * turn on/off each features in options page
 
