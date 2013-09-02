@@ -1,3 +1,5 @@
+![splash](https://raw.github.com/falcondai/chrome-ext-wikipedia/master/graphics/promo-l.png)
+
 chrome-ext-wikipedia
 ====================
 
