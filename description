@@ -1,4 +1,6 @@
-It supplements Wikipedia.org's existing web interface with some convenient behaviors I always wanted myself. 
+Wikipedia Plus supplements Wikipedia.org's existing web interface with some convenient behaviors I always wanted myself. 
+
+Unlike other extensions which aggressively modifies or interferes with the Wikipedia website look and feel, this extension respects the original Wikipedia design. I believe that the most empowering tools are invisible. 
 
 Implemented features:
 * show short text snippets for Wikipedia's internal entries when hover

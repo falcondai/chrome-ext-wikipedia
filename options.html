@@ -3,57 +3,127 @@
   <head>
     <title>Options : Wikipedia Plus</title>
     <link rel="icon" href="/assets/image/favicon.png"><style type="text/css">body {
-  font-family: Helvetica, sans-serif;
+  font-family: Ubuntu, Helvetica, sans-serif;
 }
 h1 {
-  color: #4682b4;
+  color: #007bb4;
+}
+ul {
+  padding: 0;
+}
+li {
+  display: block;
+  list-style-type: none;
+}
+span {
+  display: inline-block;
+}
+span.group {
+  margin: auto 20px;
 }
 input {
   margin: 10px;
+  vertical-align: middle;
 }
 input[type="text"] {
   font-size: 1em;
   border-radius: 5px;
-  border: 2px solid #4682b4;
+  border: 2px solid #007bb4;
   padding: 5px;
+  transition: box-shadow 0.3s ease-in-out;
 }
 input[type="text"]:focus {
+  box-shadow: 0 0 10px rgba(0,123,180,0.8);
   outline: none;
+}
+input[type="text"]:disabled {
+  background-color: #ebebe4;
+}
+input[type="range"] {
+  width: 50px;
 }
 button {
   font-size: 1em;
   padding: 5px;
   border-radius: 5px;
+  margin-top: 15px;
 }
 .foot {
   margin-top: 20px;
   color: #888;
   font-size: 0.9em;
 }
-.foot a {
+a {
+  display: inline-block;
+  transition: color 0.2s ease-in-out;
   color: #444;
   text-decoration: none;
 }
-.foot a:hover {
-  color: #000;
+a:hover {
+  color: #007bb4;
+}
+a.disabled {
+  color: #888 !important;
+}
+.actions {
+  margin-top: 50px;
+  border-top: 1px solid #888;
+}
+.actions a {
+  margin: 16px 32px 0px 0px;
+}
+.actions>span {
+  display: inline-block;
+}
+#social {
+  display: inline-block;
+  transition: -webkit-transform 0.3s ease-in-out;
+  -webkit-transform: perspective(300px) rotateX(90deg);
+}
+#social>a {
+  margin-top: 0;
+}
+#social.show {
+  -webkit-transform: perspective(300px) rotateX(0deg);
+}
+.foot a {
+  margin: auto;
+}
+#facebook:hover {
+  color: #3b579d;
+}
+#twitter:hover {
+  color: #00aced;
+}
+#gplus:hover {
+  color: #dd4b39;
 }
 .trademark-legend {
-  margin-top: 10px;
-  font-size: 0.9em;
+  margin-top: 30px;
+  font-size: 0.85em;
 }
 </style>
   </head>
   <body>
     <h1>Options : Wikipedia Plus</h1>
     <ul>
-      <li>turn section titles into links</li>
-      <li>enlarge images</li>
-      <li>show snippet for Wikipedia links</li>
+      <li class="zoom">
+        <input type="checkbox">enlarge images
+        <input type="range" min="2" max="4" step="1" value="2"><span></span>
+      </li>
+      <li class="snippet">
+        <input type="checkbox">show snippets for linked Wikipedia articles
+      </li>
+      <li class="link">
+        <input type="checkbox">turn section titles into links
+      </li>
     </ul>
-    <div class="foot">&copy; 2013 <a href="http://twitter.com/falcondai" target="_blank">Falcon Dai</a>
+    <div class="actions"><a href="#" id="ask">ask a question</a><a href="#" id="suggest">suggest a feature</a><a href="#" id="report">report an issue</a><a href="#" id="rate">rate this extension</a><span><a href="#" id="share">recommend to friends</a>
+        <div id="social"><a href="#" target="_blank" id="facebook">facebook</a><a href="#" target="_blank" id="twitter">twitter</a><a href="#" target="_blank" id="gplus">google+</a></div></span>
+      <div class="foot">&copy; 2013 <a href="http://twitter.com/falcondai" target="_blank">Falcon Dai</a></div>
       <div class="trademark-legend">Disclaimer: Wikipedia and its associated marks are official trademarks of the Wikimedia Foundation in the United States and other countries. These marks are being used under license by the Wikimedia Foundation. Wikipedia Plus Chrome Extension is not endorsed by or affiliated with the Wikimedia Foundation.</div>
     </div>
-    <script href="/vendor/jquery.js"></script>
-    <script href="/options.js"></script>
+    <script src="/vendor/jquery.js"></script>
+    <script src="/options.js"></script>
   </body>
 </html>

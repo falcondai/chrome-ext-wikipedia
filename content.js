@@ -1,4 +1,3 @@
-// TODO + options for each feature
 // TODO improve page snippet results
 // TODO + network graph with reading progress indicator (body of knowledge)
 
@@ -11,51 +10,67 @@ var popover,
     // right-to-left language pages tend to have images on the left side
     direction = html.attr('dir');
 
-$('#content a[class!="internal"] img').not('.fullImageLink img').mouseenter(function (event) {
-  var imgElmt = $(this),
+chrome.storage.local.get(['zoom', 'zoomLevel'], function(items) {
+  if (items.zoom == 'on') {
+    $('#content a[class!="internal"] img').not('.fullImageLink img').mouseenter(function (event) {
+      var imgElmt = $(this),
       src = $(this).attr('src'),
-      // enlarge images 2X
-      width = Math.min(+src.match(widthPattern)[1] * 2, html.width() - 30);
-  if (popover == undefined) {
-    popover = $('<img>').attr('class', 'ext-popover-image');
-    body.append(popover);
-  }
-  if (!imgElmt.attr('data-large-img-src')) {
-    imgElmt.attr('data-large-img-src', src.replace(widthPattern, '/' + width + 'px-'));
-    popover.unbind('error');
-    popover.bind('error', function () {
-        $(this).unbind('error');
-        // show the full resolution image (which is < 2X larger)
-        var originalSrc = src.replace(/\/thumb\//, '/').replace(/\/\d+px-.+/, '');
-        $(this).attr('src', originalSrc);
-          // .removeAttr('width')
-          // .removeAttr('height');
-        imgElmt.attr('data-large-img-src', originalSrc);
-      });
-  }
-  popover
-    // .attr('width', this.width * 2)
-    // .attr('height', this.height * 2)
-    .attr('src', imgElmt.attr('data-large-img-src'))
-    .show();
-})
-.mousemove(function (event) {
-  if (direction == 'rtl') {
-    popover.css('left', Math.min(event.pageX, html.width() - popover.outerWidth(true)));
-  } else {
-    popover.css('right', Math.min(html.width() - event.pageX, html.width() - popover.outerWidth(true)));
-  }
-  popover.css('top', Math.min(event.pageY, body.scrollTop() + html.height() - popover.outerHeight(true)));
-})
-.mouseleave(function (event) {
-  if (!onPopover) {
-    popover.hide();
+      width = Math.min(+src.match(widthPattern)[1] * Math.floor(items.zoomLevel), html.width() - 30);
+      if (popover == undefined) {
+	popover = $('<img>').attr('class', 'ext-popover-image');
+	body.append(popover);
+      }
+      if (!imgElmt.attr('data-large-img-src')) {
+	imgElmt.attr('data-large-img-src', src.replace(widthPattern, '/' + width + 'px-'));
+	popover.unbind('error');
+	popover.bind('error', function () {
+          $(this).unbind('error');
+	  // when thumbnail of the desired size is unavailable
+          // show the full resolution image
+          var originalSrc = src.replace(/\/thumb\//, '/').replace(/\/\d+px-.+/, '');
+          $(this).attr('src', originalSrc);
+          imgElmt.attr('data-large-img-src', originalSrc);
+	});
+      }
+      popover
+	.attr('src', imgElmt.attr('data-large-img-src'))
+	.show();
+    })
+    .mousemove(function (event) {
+      if (direction == 'rtl') {
+	popover.css('left', Math.min(event.pageX, html.width() - popover.outerWidth(true)));
+      } else {
+	popover.css('right', Math.min(html.width() - event.pageX, html.width() - popover.outerWidth(true)));
+      }
+      popover.css('top', Math.max(event.pageY - popover.outerHeight(true), body.scrollTop()));
+    })
+    .mouseleave(function (event) {
+      if (!onPopover) {
+	popover.hide();
+      }
+    });
   }
 });
 
 // add in-page links to section headlines
-$('.mw-headline[id]').wrap(function () {
-  return $('<a>').attr('class', 'ext-inpage-link').attr('href', '#' + $(this).attr('id'));
+chrome.storage.local.get('link', function(items) {
+  if (items.link == 'on') {
+    $('.mw-headline[id]').wrap(function () {
+      var hash = '#' + $(this).attr('id');
+      return $('<a>').attr('class', 'ext-inpage-link')
+	.attr('href', hash)
+        .click(function(event) {
+	  console.log('clicked title link', hash);
+	  event.preventDefault();
+	  history.pushState({}, '', hash);
+	  // .location.hash = this.hash; 
+	  body.animate({
+	    scrollTop: $(this).offset().top
+	  }, 400);
+	  return false;
+	});
+    });
+  }
 });
 
 // show snippet for internal Wikipedia links
@@ -77,22 +92,26 @@ function addSnippet(linkElmt, entry) {
   });
 }
 
-$('#content a[href^="/wiki/"][title][class!="internal"]').not('[href^="/wiki/File:"]')
-.mouseover(function() {
-  var linkElmt = this;
-  if (!this['data-excerpt'] && !this['data-requesting']) {
-    this['data-requesting'] = true;
-    if ($(this).hasClass('mw-redirect')) {
-      // redirecting entities
-      $.getJSON(redirectEndpoint + this.title, function (data, status) {
-        // console.log('redirect', status, data);
-        if (status == 'success' && data.query.redirects.length > 0) {
-          // console.log(data.query.redirects[0].to);
-          addSnippet(linkElmt, data.query.redirects[0].to);
-        }
-      });  
-    } else {
-      addSnippet(this, this.title);
-    }
+chrome.storage.local.get('snippet', function(items) {
+  if (items.snippet == 'on') {
+    $('#content a[href^="/wiki/"][title][class!="internal"]').not('[href^="/wiki/File:"]')
+    .mouseover(function() {
+      var linkElmt = this;
+      if (!this['data-excerpt'] && !this['data-requesting']) {
+	this['data-requesting'] = true;
+	if ($(this).hasClass('mw-redirect')) {
+	  // redirecting entities
+	  $.getJSON(redirectEndpoint + this.title, function (data, status) {
+            // console.log('redirect', status, data);
+            if (status == 'success' && data.query.redirects.length > 0) {
+	      // console.log(data.query.redirects[0].to);
+	      addSnippet(linkElmt, data.query.redirects[0].to);
+            }
+	  });  
+	} else {
+	  addSnippet(this, this.title);
+	}
+      }
+    });
   }
 });

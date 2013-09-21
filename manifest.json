@@ -1,6 +1,6 @@
 {
   "name": "Wikipedia Plus",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "manifest_version": 2,
 
   "author": "Falcon Dai",
@@ -10,8 +10,14 @@
   },
 
   "permissions": [
-    "storage"
+    "storage",
+    "notifications"
   ],
+
+  "background": {
+    "persistent": false,
+    "scripts": ["main.js"]
+  },
 
   "content_scripts": [
     {
@@ -19,5 +25,11 @@
       "js": ["vendor/jquery.js", "content.js"],
       "css": ["style.css"]
     }
+  ],
+
+  "options_page": "options.html",
+
+  "web_accessible_resources": [
+    "/assets/image/icon.png"
   ]
 }
