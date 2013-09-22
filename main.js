@@ -9,21 +9,23 @@ chrome.runtime.onInstalled.addListener(function (details) {
     });
   });
 
-  var notification = webkitNotifications.createNotification(
-    '/assets/image/icon.png', 
-    details.reason == 'update' ? 'Wikipedia Plus is updated' : 'Thanks for using Wikipedia Plus',
-    'click to visit the ' + (details.reason == 'update' ? 'new ' : '') + 'options page'
-  );
-  notification.onclick = function () {
-    chrome.tabs.create({
-      url: chrome.extension.getURL('/options.html')
-    });
-    this.cancel();
-  };
-  notification.show();
-  
-  // minor update message
-  // setTimeout(function () {
-  //   notification.cancel();
-  // }, 5000);
+  if (details.reason == 'update') {
+    var notification = webkitNotifications.createNotification(
+      '/assets/image/icon.png', 
+      'Wikipedia Plus is updated',
+      'click to visit the new options page'
+    );
+    notification.onclick = function () {
+      chrome.tabs.create({
+	url: chrome.extension.getURL('/options.html')
+      });
+      this.cancel();
+    };
+    notification.show();
+    
+    // minor update message
+    // setTimeout(function () {
+    //   notification.cancel();
+    // }, 5000);
+  }
 });

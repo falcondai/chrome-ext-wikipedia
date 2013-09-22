@@ -1,3 +1,4 @@
+// TODO + devicePixelRatio fix
 // TODO improve page snippet results
 // TODO + network graph with reading progress indicator (body of knowledge)
 
@@ -63,7 +64,6 @@ chrome.storage.local.get('link', function(items) {
 	  console.log('clicked title link', hash);
 	  event.preventDefault();
 	  history.pushState({}, '', hash);
-	  // .location.hash = this.hash; 
 	  body.animate({
 	    scrollTop: $(this).offset().top
 	  }, 400);
@@ -81,6 +81,7 @@ var wikiApiRoot = '//' + document.location.host + '/w/api.php',
 function stripHtmlTags(html) {
   return html.replace(/<.+?>/g, '');
 }
+
 function addSnippet(linkElmt, entry) {
   $.getJSON(searchEndpoint + entry, function (data, status) {
     // console.log(status, data);

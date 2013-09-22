@@ -1,19 +1,16 @@
 Wikipedia Plus supplements Wikipedia.org's existing web interface with some convenient behaviors I always wanted myself. 
 
-Unlike other extensions which aggressively modifies or interferes with the Wikipedia website look and feel, this extension respects the original Wikipedia design. I believe that the most empowering tools are invisible. 
+Unlike other extensions which aggressively modify or interfere with the Wikipedia website look and feel, this extension respects the original Wikipedia design. I believe that the most empowering tools are invisible. 
 
-Implemented features:
+Features:
 * show short text snippets for Wikipedia's internal entries when hover
 * turn section titles into in-page links for easier bookmarking and sharing particular sections
-* enlarge images by 2X when hover
+* enlarge images when hover
+  * zoom level is adjustable
   * adjusted enlarged image placement for right-to-left language pages
-
-Future features:
-* adjustable image zoom level
-* turn on/off each features in options page
 
 This is an open-source software. Check out the source at: https://github.com/falcondai/chrome-ext-wikipedia
 
-Privacy: This extension does NOT record or send your browsing activities to a remote server. Your browsing activities at wikipedia.org is not accessible by any third party including me.
+Privacy: This extension does NOT record or send your browsing activities to any remote servers. Your browsing activities at wikipedia.org is not accessible by any third party including me. The permission to "access your data on *.wikipedia.org" is only used to insert the necessary UI-modifying scripts.
 
 Disclaimer: Wikipedia and its associated marks are official trademarks of the Wikimedia Foundation in the United States and other countries. These marks are being used under license by the Wikimedia Foundation. Wikipedia Plus Chrome Extension is not endorsed by or affiliated with the Wikimedia Foundation.
